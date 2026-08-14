@@ -1,8 +1,0 @@
-{
-  "name": "DriveDeal - Car Presentation",
-  "short_name": "DriveDeal",
-  "start_url": "./index.html",
-  "display": "standalone",
-  "background_color": "#08090b",
-  "theme_color": "#0b0b0d"
-}
