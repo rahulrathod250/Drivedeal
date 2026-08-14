@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#0b0b0d">
+<link rel="manifest" href="manifest.json">
+<title>DriveDeal</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#08090b;color:#fff}
+.app{max-width:520px;margin:auto;min-height:100vh;background:#101114}
+header{padding:22px 18px 14px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}.mark{width:45px;height:45px;border-radius:13px;background:linear-gradient(145deg,#222,#050505);border:1px solid #5b4210;display:grid;place-items:center;color:#f3bd36;font-size:29px;font-weight:900}.brand{font-size:25px;font-weight:800}.brand span{color:#eab43b}
+.sub{color:#aaa;font-size:12px;margin-top:2px}.content{padding:10px 16px 90px}
+.hero{background:linear-gradient(135deg,#17181d,#0c0d0f);border:1px solid #292b31;border-radius:18px;padding:20px;margin-bottom:16px}
+.hero h1{margin:0 0 7px;font-size:25px}.hero p{margin:0;color:#aaa}
+.btn{border:0;border-radius:13px;padding:15px 17px;font-weight:700;font-size:15px;cursor:pointer}
+.primary{background:#e8ad28;color:#111;width:100%;margin-top:17px}.card{background:#17181c;border:1px solid #2b2d32;border-radius:16px;padding:16px;margin:12px 0}.card h3{margin:0 0 12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{background:#0e0f12;border:1px solid #292b30;border-radius:11px;padding:11px}.field label{display:block;color:#888;font-size:11px;margin-bottom:5px}.field input,.field select{width:100%;background:none;border:0;outline:0;color:#fff;font-size:14px}
+.photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.photo{height:110px;border-radius:12px;background:#0c0d10;border:1px dashed #4a4b50;display:grid;place-items:center;color:#999;text-align:center;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:520px;width:100%;background:#121317;border-top:1px solid #292b30;display:flex;justify-content:space-around;padding:10px 4px 9px}.nav button{background:none;border:0;color:#aaa;font-size:11px}.nav button.active{color:#efb72f}
+.page{display:none}.page.active{display:block}.back{background:none;border:0;color:#fff;font-size:15px;margin:4px 0 10px}.preview{background:#050607;border-radius:18px;overflow:hidden;border:1px solid #3b3b3b}.preview img{width:100%;height:210px;object-fit:cover;background:#222}.preview-body{padding:18px}.price{font-size:24px;color:#f0b632;font-weight:800;margin:8px 0 16px}.tag{display:inline-block;background:#f0b632;color:#111;padding:5px 8px;border-radius:6px;font-size:10px;font-weight:800}.detail-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}.detail-list div{background:#121317;border-radius:9px;padding:9px;font-size:12px}.share button{width:100%;margin:7px 0;background:#1b1d22;color:#fff;border:1px solid #333}
+.small{color:#888;font-size:12px}.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#f0b632;color:#111;padding:11px 15px;border-radius:10px;font-weight:700;display:none}
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="logo"><div class="mark">D</div><div><div class="brand">Drive<span>Deal</span></div><div class="sub">Present • Show • Sell</div></div></div></header>
+
+<main class="content">
+<section id="home" class="page active">
+<div class="hero"><h1>Car Presentation</h1><p>Apni car ka professional presentation seconds mein banayein.</p><button class="btn primary" onclick="show('new')">＋ New Car Presentation</button></div>
+<div class="card" onclick="show('saved')"><h3>📁 My Presentations</h3><div class="small">Saved car presentations dekhein</div></div>
+<div class="card" onclick="show('new')"><h3>🔍 Search Car</h3><div class="small">Car details aur photos manage karein</div></div>
+<div class="card"><h3>✨ Features</h3><div class="small">Photos • Details • Preview • PDF • WhatsApp Share</div></div>
+</section>
+
+<section id="new" class="page">
+<button class="back" onclick="show('home')">← Home</button>
+<div class="card"><h3>🚘 Car Details</h3><div class="grid">
+<div class="field"><label>Brand</label><input id="brand" value="Mercedes-Benz"></div>
+<div class="field"><label>Model</label><input id="model" value="E-Class"></div>
+<div class="field"><label>Year</label><input id="year" value="2022"></div>
+<div class="field"><label>Price</label><input id="price" value="4650000" type="number"></div>
+<div class="field"><label>KM Driven</label><input id="km" value="45000"></div>
+<div class="field"><label>Fuel</label><select id="fuel"><option>Diesel</option><option>Petrol</option><option>Electric</option><option>CNG</option></select></div>
+<div class="field"><label>Transmission</label><select id="trans"><option>Automatic</option><option>Manual</option></select></div>
+<div class="field"><label>Owner</label><input id="owner" value="1st Owner"></div>
+<div class="field"><label>Registration No.</label><input id="reg" value="GJ01XX1234"></div>
+<div class="field"><label>Location</label><input id="loc" value="Ahmedabad, Gujarat"></div>
+<div class="field" style="grid-column:1/-1"><label>Contact Number</label><input id="phone" value="8347933945"></div>
+</div></div>
+<div class="card"><h3>📸 Car Photos — Unlimited</h3><p class="small">Jitne chahein photos select karein.</p><div id="extraGallery" class="photo-grid"></div><label class="btn primary" style="display:block;text-align:center">＋ Add More Photos<input id="extraPhotos" type="file" accept="image/*" multiple onchange="addMany(this)" hidden></label></div><div class="card"><h3 style="color:#efb72f">📄 RC / Documents</h3><p class="small">RC ka photo alag section mein save hoga.</p><label class="photo" style="height:150px">＋ Add RC Photo<input id="rcInput" type="file" accept="image/*" onchange="addRC(this)" hidden></label><div id="rcShow"></div></div><div class="card"><h3>📸 Car Photos</h3><div class="photo-grid">
+<label class="photo">＋ Front<input type="file" accept="image/*" onchange="photo(this,'front')" hidden></label>
+<label class="photo">＋ Back<input type="file" accept="image/*" onchange="photo(this,'back')" hidden></label>
+<label class="photo">＋ Side<input type="file" accept="image/*" onchange="photo(this,'side')" hidden></label>
+<label class="photo">＋ Interior<input type="file" accept="image/*" onchange="photo(this,'interior')" hidden></label>
+</div></div>
+<button class="btn primary" onclick="preview()">✨ Create Presentation</button>
+</section>
+
+<section id="preview" class="page">
+<button class="back" onclick="show('new')">← Edit</button>
+<div class="preview"><div id="heroPhoto" class="photo" style="height:210px;border:0;border-radius:0">Car Photo</div><div id="previewGallery" class="photo-grid" style="padding:10px"></div><div class="preview-body">
+<span class="tag">FOR SALE</span><h1 id="pTitle">MERCEDES-BENZ E-CLASS</h1><div class="small" id="pSub"></div><div class="price" id="pPrice"></div>
+<h3>CAR DETAILS</h3><div class="detail-list" id="details"></div>
+</div></div>
+<div id="rcPreviewCard" class="card" style="display:none"><h3>📄 RC / Document</h3><div id="rcPreview"></div></div><div class="share"><button class="btn" onclick="downloadPDF()">📄 Generate PDF</button><button class="btn" onclick="shareWA()">🟢 Share on WhatsApp</button><button class="btn" onclick="shareNative()">📤 Share Presentation</button></div>
+</section>
+
+<section id="saved" class="page"><button class="back" onclick="show('home')">← Home</button><div class="card"><h3>📁 My Presentations</h3><p class="small">Demo version: current presentation is stored in this browser.</p><button class="btn primary" onclick="preview()">Open Presentation</button></div></section>
+</main>
+<nav class="nav"><button class="active" onclick="show('home')">⌂<br>Home</button><button onclick="show('new')">🚘<br>My Cars</button><button onclick="show('saved')">▣<br>Templates</button><button>⚙<br>Settings</button></nav>
+<div id="toast" class="toast"></div>
+<script>
+let photos={extra:[],rc:null};
+function show(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
+function v(id){return document.getElementById(id).value}
+function addMany(inp){[...inp.files].forEach(f=>{let r=new FileReader();r.onload=e=>{photos.extra.push(e.target.result);renderExtra()};r.readAsDataURL(f)});inp.value=''}
+function renderExtra(){document.getElementById('extraGallery').innerHTML=photos.extra.map((s,i)=>'<div class="photo"><img src="'+s+'"><button onclick="photos.extra.splice('+i+',1);renderExtra()" style="position:absolute;bottom:5px;right:5px;background:#000c;color:white;border:0;border-radius:6px">×</button></div>').join('')||'<div class="photo" style="grid-column:1/-1">＋ Add car photos</div>'}
+function addRC(inp){if(!inp.files[0])return;let r=new FileReader();r.onload=e=>{photos.rc=e.target.result;document.getElementById('rcShow').innerHTML='<img src="'+e.target.result+'" style="width:100%;max-height:300px;object-fit:contain;border-radius:12px;margin-top:10px">'};r.readAsDataURL(inp.files[0])}
+function photo(inp,key){if(!inp.files[0])return;let r=new FileReader();r.onload=e=>{photos[key]=e.target.result;let l=inp.parentElement;l.innerHTML='<img src="'+e.target.result+'">';};r.readAsDataURL(inp.files[0])}
+function preview(){
+document.getElementById('pTitle').textContent=(v('brand')+' '+v('model')).toUpperCase();
+document.getElementById('pSub').textContent=v('year')+' | '+v('fuel')+' | '+v('trans')+' | '+v('km')+' KM';
+document.getElementById('pPrice').textContent='₹ '+Number(v('price')).toLocaleString('en-IN');
+let arr=[['Model Year',v('year')],['Fuel Type',v('fuel')],['KM Driven',v('km')+' KM'],['Transmission',v('trans')],['Owner',v('owner')],['Registration',v('reg')],['Location',v('loc')],['Contact',v('phone')]];
+document.getElementById('details').innerHTML=arr.map(x=>'<div><b>'+x[0]+'</b><br>'+x[1]+'</div>').join('');
+let hp=document.getElementById('heroPhoto');hp.innerHTML=photos.front?'<img src="'+photos.front+'">':'🚘 Car Photo';document.getElementById('previewGallery').innerHTML=photos.extra.map(s=>'<div class="photo"><img src="'+s+'"></div>').join('');
+if(photos.rc){document.getElementById('rcPreviewCard').style.display='block';document.getElementById('rcPreview').innerHTML='<img src="'+photos.rc+'" style="width:100%;max-height:350px;object-fit:contain;border-radius:12px">'}else document.getElementById('rcPreviewCard').style.display='none';
+show('preview');localStorage.setItem('drivedeal',JSON.stringify({brand:v('brand'),model:v('model'),year:v('year'),price:v('price'),phone:v('phone')}));
+}
+function toast(t){let x=document.getElementById('toast');x.textContent=t;x.style.display='block';setTimeout(()=>x.style.display='none',2200)}
+function shareWA(){let text='🚘 '+v('brand')+' '+v('model')+'\\n'+v('year')+' | '+v('fuel')+' | '+v('km')+' KM\\n💰 ₹ '+Number(v('price')).toLocaleString('en-IN')+'\\n📞 '+v('phone');window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank')}
+async function shareNative(){if(navigator.share) await navigator.share({title:'DriveDeal - '+v('brand')+' '+v('model'),text:'Car Presentation'});else toast('Share option browser mein available nahi hai')}
+function downloadPDF(){window.print()}
+</script>
+</div>
+</body>
+</html>
